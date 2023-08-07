@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form Modal</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        @font-face {
+            font-family: collins;
+            src: url(Font\ Pack/Ancillary-Bold.otf);
+        }
+
+        :root{
+            --color:#cb031d;
+            --color2:#ffffff;
+            --color3:#000000;
+        }
+
+        .mainCont{
+            background-image: url(IMAGES/IMG.jpg);
+            width:100%;
+            height: 100vh;
+            /* background-position: center; */
+            background-size: cover;
+        }
+
+        header {
+            background-color:var(--color) ;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px 50px;
+            height: 80px;
+            border-bottom: 2px solid var(--color2);
+        }
+
+        .logo{
+            color: var(--color2);
+            font-family: collins;
+            font-size: 30px;
+        }
+
+        nav ul {
+            display: flex;
+            margin: 0px 150px;
+        }
+
+        nav ul li {
+            padding: 0px 30px;
+        }
+
+        nav ul li a{
+            position: relative;
+            font-family: collins;
+            color: var(--color2);
+            font-size: 20px;
+        }
+
+        nav ul li a::after{
+            content: ' ';
+            position: absolute;
+            width:100%;
+            height: 3px ;
+            left:0;
+            top:30px;
+            background-color: var(--color2);
+            border-radius: 10px;
+            transform: scale(0);
+            transition: .5s;
+        }
+
+        nav ul li a:hover:after{
+            transform: scale(1);
+        }
+
+         .but {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            width:130px;
+            height:50px;
+            background:transparent;
+            border: none;
+            text-transform: uppercase;
+            border-radius: 6px;
+            cursor:pointer;
+            color:var(--color2);
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: .5s ;
+        }
+
+        .but:hover{
+            background-color: var(--color2);
+            color: var(--color);
+        }
+
+        section#Login{
+            width:100%;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            ;
+            align-items: center ;
+            /* background-color: transparent; */
+            /* filter: blur(10px); */
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+        }
+        
+        section#Login .loginBox{
+            backdrop-filter: blur(30px);
+            margin: 20px;
+            padding: 20px;
+            width:450px;
+            height: auto;
+            border:  3px solid var(--color2);
+            border-radius: 20px;
+            overflow: hidden;
+            display: none;
+            animation: Zoom 2s ease forwards;
+        }
+
+        @keyframes Zoom {
+            from{
+                opacity: 0;
+                transform: scale(0);
+            }
+            to{
+                opacity:1;
+                transform: scale(1);
+            }
+        }
+
+        section#Login .loginBox .close{
+            position: absolute;
+            cursor: pointer;
+            top:0;
+            right:0;
+            padding: 10px;
+            font-size: 35px;
+            transition: .5s;
+            border: none;
+        }
+
+        section#Login .loginBox .close:hover{
+            background-color: var(--color3);
+            color:var(--color2)
+        }
+
+        section#Login .loginBox .h1Div{
+            margin: 20px 0px;
+        }
+
+        section#Login .loginBox .h1Div h1{
+            font-family: collins;
+            font-size: 40px;
+            text-align: center;
+            color: var(--color2);
+        }
+        
+        section#Login .loginBox .UsernameDiv {
+            padding:30px 0px;
+            width:100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap:30px;
+            ;
+        }
+
+        section#Login .loginBox .UsernameDiv label[for=Username]{
+            font-weight: bold;
+            font-family: collins;
+            color:var(--color2);
+            font-size: 20px;
+        }
+
+        section#Login .loginBox .UsernameDiv input[type=text]{
+            width:55%;
+            padding: 10px;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        section#Login .loginBox .PasswordDiv {
+            padding:30px 0px;
+            width:100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap:30px;
+            ;
+        }
+
+        section#Login .loginBox .PasswordDiv label[for=Password]{
+            font-weight: bold;
+            font-family: collins;
+            color:var(--color2);
+            font-size: 20px;
+        }
+
+        section#Login .loginBox .PasswordDiv input[type=Password]{
+            width:55%;
+            padding: 10px;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        section#Login .loginBox .Logincontent{
+            display: flex;
+            padding: 10px 0px;
+            width:100%;
+            justify-content: space-between;
+            ;
+        }
+
+        section#Login .loginBox .Logincontent .checkboxDiv{
+            display: flex;
+            gap:10px;
+        }
+
+        section#Login .loginBox .Logincontent .checkboxDiv p{
+            color: var(--color2);
+            font-family: collins;
+            font-size: 20px;
+        }
+
+        section#Login .loginBox .Logincontent .ForgetPasswordDiv a {
+            color: var(--color2);
+            font-family: collins;
+            font-size: 20px;
+        }
+
+        section#Login .loginBox  .buttonDiv {
+            display: flex;
+            padding:15px 0px;
+            justify-content: center;
+            align-items: center;
+            ;
+        }
+
+        section#Login .loginBox  .buttonDiv .but2{
+            width:100%;
+            cursor: pointer;
+            height:50px;
+            font-size: 20px;
+            font-family: collins;
+            transition: .5s;
+            border: none;
+        }
+
+        section#Login .loginBox  .buttonDiv .but2:hover{
+            background-color: var(--color3);
+            color: var(--color2);
+        }
+    </style>
+</head>
+<body>
+    <div class="mainCont">
+        <header>
+            <div class="logo">
+                C@llyn$
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contect</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+                    <button class="but">Login</button>
+            </nav>
+        </header>
+        <section id="Login">
+            <div class="loginBox">
+                <button class="close">&times;</button>
+                <div class="h1Div">
+                    <h1>LOGIN</h1>
+                </div>
+                <div class="UsernameDiv">
+                    <label for="Username">Username</label>
+                    <input type="text" placeholder="Input your Username" required>
+                </div>
+                <div class="PasswordDiv">
+                    <label for="Password">Password</label>
+                    <input type="password" placeholder="Input your Password" required>
+                </div>
+                <div class="Logincontent">
+                    <div class="checkboxDiv">
+                        <input type="checkbox">
+                        <p>Remeber me</p>
+                    </div>
+                    <div class="ForgetPasswordDiv">
+                        <a href="#">Forget Password ?</a>
+                    </div>
+                </div>
+                <div class="buttonDiv">
+                    <button class="but2">LOGIN</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        let Close =document.querySelector('.close')
+        let But = document.querySelector('.but')
+        let LoginBox = document.querySelector('.loginBox')
+
+        But.addEventListener("click",()=>{
+            LoginBox.style.display='block'
+        })
+
+        Close.addEventListener("click",()=>{
+            LoginBox.style.display='none'
+        })
+    </script>
+</body>
+</html>
+

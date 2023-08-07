@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ping pong ⚡♨♨♨</title>
+    <style>
+        canvas{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <script>
+        const canvas =document.querySelector('#gameCanvas')
+        const ctx = canvas.getContext('2d')
+
+        let ballX = canvas.width / 2;
+        let ballY = canvas.height / 2;
+        let ballSpeedX = 5;
+        let ballSpeedY = 5;
+
+        let player1Y= canvas.height/2-50;
+        let player2Y= canvas.height/2-50;
+        const paddleHeight=100;
+
+        let player1Score =0;
+        let player2Score =0;
+
+        document.addEventListener('keydown', event =>{
+            if (event.keyCode === 38) {
+                // up arrow key 
+                player1Y-=10;
+            }else if(event.keyCode === 40) {
+                //Down arrow key
+                player1Y+=10;
+            }else if(event.keyCode ===87){
+                // W key
+                player2Y-=10;
+            }else if(event.keyCode === 83){
+                // S key
+                player2Y+=10;
+            }
+        });
+         function draw() {
+            //Draw the keyboard
+            ctx.fillStyle='black';
+            ctx.fillRect(0,0, canvas.width, canvas.height);
+
+            //Draw the ball
+            ctx.fillStyle='white';
+            ctx.beginPath();
+            ctx.arc(ballX,ballY, 10, 0, Math.PI*2);
+            ctx.fill();
+
+            //Draw player 1's paddle
+            ctx.fillStyle='white';
+            ctx.fillRect(10, player1Y, 10, paddleHeight);
+
+            //Draw player 2's paddle
+            ctx.fillStyle='white';
+            ctx.fillRect(canvas.width - 20, player2Y, 10, paddleHeight);
+
+            //Draw the score
+            ctx.fillStyle='white';
+            ctx.font='30px Arial';
+            ctx.fillText(`${player1Score} - ${player2Score}`,canvas.width / 2 - 50, 50);
+         }
+
+         function move() {
+            //Move the ball
+            ballX += ballSpeedX;
+            ballY += ballSpeedY;
+
+            //Bounce the ball off the top and bottom walls
+            if (ballY< 0 || ballY > canvas.height) {
+                ballSpeedY= -ballSpeedY;
+            }
+         }
+
+         function checkCollisions() {
+            //Check if the ball hit player 1's paddle
+            if (ballX < 20 && ballY > player1Y && ballY < player1Y + paddleHeight) {
+                ballSpeedX = -ballSpeedX
+            }
+
+            // Check if the ball hit player 2's paddle
+            if (ballX > canvas.width - 20 && ballY > player2Y && ballY < player2Y + paddleHeight) {
+                ballSpeedX = -ballSpeedX
+            }
+
+            //Check if the ball went out of bounds on player 1's side 
+            if (ballX < 0) {
+                player2Score++
+                resetBall()
+            }
+
+            //Check if the ball went out of bounds on player 2's side
+            if (ballX > canvas.width) {
+                player1Score++
+                resetBall()
+            }
+         }
+
+         function resetBall() {
+            ballX = canvas.width / 2;
+            ballY = canvas.height / 2;
+            ballSpeedX = -ballSpeedX
+            ballSpeedY = Math.random() * 10 - 5;
+         }
+
+         function update() {
+            move()
+            draw()
+            checkCollisions()
+            requestAnimationFrame(update)
+         }
+         update()
+    </script>
+</body>
+</html>

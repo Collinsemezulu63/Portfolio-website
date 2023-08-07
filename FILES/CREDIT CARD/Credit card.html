@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        
+        main{
+            background-image: linear-gradient(to top left,rgb(145, 63, 63), black);
+            width:100%;
+            height: 100vh;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 0px 50px;
+            align-items: center;
+        }
+
+        .cardInput{
+            width:400px;
+            height: auto;
+            /* height: 300px; */
+            background: green;
+            /* display: flex; */
+            /* justify-content: center; */
+            /* align-items: center; */
+            /* flex-direction: column; */
+            padding: 50px 20px;
+        }
+
+        h1{
+            font-size: 25px;
+            margin: 10px;
+        }
+
+        .Input-Card-Number input{
+            width:80px;
+            text-align: center;
+        }
+
+        .Input-Name-On-Card input{
+            width:335px;
+            height: 30px;
+        }
+
+        .Input-Expire-Date input{
+            width:40px
+        }
+
+        .Main-Card{
+            background-image: linear-gradient(to right,red,black);
+            width:450px;
+            border-radius: 5px;
+            padding: 20px 0px;
+        }
+
+        .Main-Card .Img-Cont{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .Main-Card .Img-Cont img {
+            height: 40px;
+        }
+        .Card-Number-Input{
+            /* border: 2px solid white; */
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 20px;
+        }
+        
+        .Card-Number-Input .Number-Input{
+            text-align: center;
+            width:60px;
+            height: 35px;
+            /* border: 2px solid navy; */
+        }
+        
+        .Name-Cont{
+            margin: 50px 20px;
+            display: flex;
+            justify-content: space-between;
+            /* width: 100%; */
+            /* border: 2px solid white; */
+        }
+
+        .Name-Cont .Expire-Cont{
+            display: flex;
+            flex-direction: column;
+            /* border: 2px solid navy; */
+        }
+
+        .Name-On-Card{
+            /* margin: 10px 20px; */
+            /* border: 2px solid navy; */
+            display: flex;
+            flex-direction: column;
+            /* justify-content: space-between; */
+        }
+
+        h2{
+            font-size: 20px;
+            /* font-weight: normal; */
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="cardInput">
+            <h1>Card number</h1>
+            <div class="Input-Card-Number">
+                <input type="text" maxlength="4" class="input1">
+                <input type="text" maxlength="4" class="input2">
+                <input type="text" maxlength="4" class="input3">
+                <input type="text" maxlength="4" class="input4">
+            </div>
+            <h1>Name on card</h1>
+            <div class="Input-Name-On-Card">
+                <input type="text" class="input5">
+            </div>
+            <h1>Expire date</h1>
+            <div class="Input-Expire-Date">
+                <input type="text" maxlength="2" class="input6" placeholder="YY">
+                <input type="text" maxlength="2" class="input7" placeholder="MM">
+            </div>
+            <!-- <h1>CVV</h1>
+            <div class="CVV-Input">
+                <input type="text">
+            </div> -->
+        </div>
+        <div class="Main-Card">
+            <div class="Img-Cont">
+                <img src="image/chippp.PNG" alt="chip">
+                <img src="image/mastercard - Copy.png" alt="chip">
+            </div>
+            <div class="Card-Number-Input">
+                <div class="Number-Input Number-Input1"></div>
+                <div class="Number-Input Number-Input2"></div>
+                <div class="Number-Input Number-Input3"></div>
+                <div class="Number-Input Number-Input4"></div>
+            </div>
+            <div class="Name-Cont">
+                <div class="Name-On-Card">
+                    <h2>Name:</h2>
+                    <p class="Name"></p>
+                </div>
+                <div class="Expire-Cont">
+                    <h2>Expire:</h2>
+                    <p><span class="Expire1"></span>/<span class="Expire2"></span></p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+
+        // CARD NUMBER 
+
+
+        const NumberInput1 = document.querySelector('.Number-Input1'),
+         NumberInput2 = document.querySelector('.Number-Input2'),
+         NumberInput3 = document.querySelector('.Number-Input3'),
+         NumberInput4 = document.querySelector('.Number-Input4'),
+         Input1 = document.querySelector('.input1'),
+         Input2 = document.querySelector('.input2'),                                                                            
+         Input3 = document.querySelector('.input3'),                                                                            
+         Input4 = document.querySelector('.input4')
+         
+         Input1.addEventListener("input",()=>{
+            NumberInput1.innerHTML=Input1.value
+        })
+        Input2.addEventListener("input",()=>{
+            NumberInput2.innerHTML=Input2.value
+        })
+            
+        Input3.addEventListener("input",()=>{
+            NumberInput3.innerHTML=Input3.value
+        })
+            
+        Input4.addEventListener("input",()=>{
+            NumberInput4.innerHTML=Input4.value
+        })
+
+
+        //Name on Card
+            const Input5 =document.querySelector('.input5'),
+            Name =  document.querySelector('.Name')
+            Input5.addEventListener('input',()=>{
+                Name.innerHTML=Input5.value
+            })
+
+        
+        //Expire Date
+            const Input6 = document.querySelector('.input6'),
+            Input7 = document.querySelector('.input7'),
+            Expire1 = document.querySelector('.Expire1'),
+            Expire2 = document.querySelector('.Expire2')
+            Input6.addEventListener('input',()=>{
+                Expire1.innerHTML=Input6.value
+            })
+            Input7.addEventListener('input',()=>{
+                Expire2.innerHTML=Input7.value
+            })
+            // console.log(Input7);
+            // console.log(Input6);
+    </script>
+</body>
+</html>

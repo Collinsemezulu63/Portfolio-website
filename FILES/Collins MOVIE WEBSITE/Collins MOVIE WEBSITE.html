@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            list-style: none;
+            text-decoration: none;
+            font-family: main;
+            scroll-behavior: smooth;
+        }
+        @font-face {
+            font-family: main;
+            src: url(FONTS/Ancillary-Bold.otf);
+        }
+        @font-face {
+            font-family: sub-main;
+            src: url(FONTS/FONT.TTF);
+        }
+        :root{
+            --color:#ffe0e0;
+            --color2:#ff1100;
+            --color3:#290000;
+        }
+
+        main.Main-Cont{
+            width:100%;
+            height: auto;
+            background-color: var(--color3);
+            color: var(--color);
+            /* position: relative; */
+        }
+
+        main.Main-Cont.light{
+            background: var(--color);
+            color:var(--color3)
+        }
+
+        main.Main-Cont.light > footer#Newsletter .Follow-Cont .Icon-Cont .S-Icon #facebook{
+            fill:var(--color3)
+        }
+
+        header{
+            position: fixed;
+            z-index: 100;
+            width:100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            transition: 1s;
+        }
+
+        header.scrolled{
+            background: var(--color2);
+        }
+
+        header.scrolled > .Nav-Bar ul li a{
+            color:white
+        }
+
+        header.scrolled > .Nav-Bar ul li a::before{
+            background-color:white
+        }
+
+        .bars{
+            display: none;
+        }
+
+        .logo{
+            font-family: sub-main;
+            font-size: 35px;
+            user-select: none;
+            color:var(--color3)
+        }
+        
+        .Nav-Bar ul {
+            display: flex;
+        }
+        
+        .Nav-Bar ul li {
+            padding: 0px 20px;
+        }
+        
+        .Nav-Bar ul li a {
+            font-size: 20px;
+            color:var(--color3);
+            position: relative;
+        }
+
+        .Nav-Bar ul li a::before{
+            content:' ';
+            transition: .5s;
+            position: absolute;
+            left:0;
+            top:30px;
+            width:100%;
+            height: 3px;
+            border-radius: 5px;
+            background-color: var(--color3);
+            transform: scale(0);
+        }
+
+        .Nav-Bar ul li a:hover::before{
+            transform: scale(1);
+        }
+
+        @media screen and (max-width:1040px) {
+            header{
+                padding: 15px 30px;
+            }
+        }
+
+        @media screen and (max-width:930px) {
+            header{
+                padding: 15px 20px;
+            }
+        }
+
+        @media screen and (max-width:900px) {
+            .bars{
+                display: block;
+                cursor: pointer;
+            }
+
+            .bars .line{
+                margin: 5px 0px;
+                width:30px;
+                height: 3px;
+                background-color: var(--color3);
+            }
+
+            .Nav-Bar {
+                position: absolute;
+                right: 0;
+                top:70px;
+                background-color: var(--color2);
+                opacity: 0;
+                width: 0px;
+                transition: .5s;
+            }
+
+            .Nav-Bar.active{
+                opacity: 1;
+                width: 160px;
+            }
+
+            .Nav-Bar ul {
+                display: block;
+            }
+
+            .Nav-Bar ul li {
+                padding: 20px;
+                border-bottom: 2px dotted var(--color);
+            }
+
+            .Nav-Bar ul li:last-child{
+                border-bottom: none;
+            }
+
+            .Nav-Bar ul li a {
+                color:var(--color);
+            }
+            
+            .Nav-Bar ul li a::before{
+                background-color:var(--color);
+
+            }
+        }
+
+        section#Home .Main-Slider-Cont {
+            position: relative;
+            width:100%;
+            overflow: hidden;
+            height:550px;
+        }
+
+        section#Home .Main-Slider-Cont .Next{
+            cursor: pointer;
+            position: absolute;
+            z-index: 99;
+            top:50%;
+            right: 5%;
+            width:50px;
+            height: 50px;
+            border: 2px solid var(--color3);
+            border-radius: 50%;
+            font-size: 30px;
+            color:var(--color);
+            background-color: var(--color2);
+            font-weight: bold;
+            transition: .5s;
+        }
+
+        section#Home .Main-Slider-Cont .Next:hover{
+            color: var(--color2);
+            background-color: var(--color);
+        }
+
+        section#Home .Main-Slider-Cont .Slider-Cont {
+            position: absolute;
+            width:100%;
+            height: 100%;
+            transition: 1s;
+        }
+
+        section#Home .Main-Slider-Cont .Slider-Cont  img {
+            /* position: absolute; */
+            width:100%;
+            height: 100%;
+            object-fit:cover;
+        }
+
+        section#Home .Main-Slider-Cont .Slider-Cont .Slider-Content{
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+        }
+
+        section#Home .Main-Slider-Cont .Slider-Cont .Slider-Content .Button-Cont{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        section#Home .Main-Slider-Cont .Slider-Cont .Slider-Content .Button-Cont a {
+            background-color: var(--color2);
+            position: relative;
+            display: inline-flex;
+            /* border:3px solid var(--color3); */
+            border-radius: 10px;
+            padding: 10px;
+            margin: 20px 0px;
+            color:var(--color);
+            font-weight: bold;
+            font-size: 20px;
+            z-index: 1;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        section#Home .Main-Slider-Cont .Slider-Cont .Slider-Content .Button-Cont a::after{
+            content: "";
+            position:absolute;
+            left:0;
+            top:0;
+            width:0%;
+            height: 100%;
+            background-color: var(--color);
+            z-index: -1;
+            transition: .5s ease-in-out;
+        }
+
+        section#Home .Main-Slider-Cont .Slider-Cont .Slider-Content .Button-Cont a:hover::after{
+            width:100%;
+            color:var(--color2);
+        }
+
+        section#Home .Main-Slider-Cont .Slider-Cont .Slider-Content .Button-Cont a:hover{
+            color:var(--color2);
+            z-index: 1;
+        }
+
+        section#Home .Main-Slider-Cont .Slider-Cont .Slider-Content h1{
+            color:var(--color);
+            text-align: center;
+            font-family: sub-main;
+            font-size: 60px;
+            -webkit-text-stroke: 1px var(--color3);
+        }
+
+        @media screen and (max-width:960px) {
+            section#Home .Main-Slider-Cont {
+                height: 450px;
+            }
+        }
+
+        @media screen and (max-width:730px) {
+            section#Home .Main-Slider-Cont .Slider-Cont .Slider-Content h1{
+                font-size: 50px;
+            }
+        }
+
+        @media screen and (max-width:530px) {
+            section#Home .Main-Slider-Cont .Slider-Cont .Slider-Content h1{
+                font-size: 40px;
+            }
+
+            section#Home .Main-Slider-Cont {
+                height: 400px;
+            }
+        }
+
+        @media screen and (max-width:400px) {
+            section#Home .Main-Slider-Cont {
+                height: 350px;
+            }
+            section#Home .Main-Slider-Cont .Slider-Cont .Slider-Content h1{
+                font-size: 35px;
+            }
+        }
+
+        section#Trending{
+            padding: 50px 50px;
+        }
+        
+        section#Trending .h1-Cont{
+            margin: 0px 0px 20px;
+            border-bottom:  5px solid var(--color2);
+            padding: 10px 0px;
+            font-size: 30px;
+            font-family: sub-main;
+            font-weight: 100;
+            text-align: center;
+        }
+
+        section#Trending .Main-Trending-Cont{
+            padding: 20px 0px;
+            display: grid;
+            align-items: center;
+            justify-content: center;
+            row-gap: 50px;
+            column-gap:30px;
+            grid-template-columns: auto auto auto auto auto;
+        }
+
+        section#Trending .Main-Trending-Cont .Trending-Cont{
+            width:200px;
+            border: 10px groove transparent;
+            border-radius: 20px;
+            transition: .5s;
+            overflow: hidden;
+            /* padding: 5px; */
+            cursor:pointer;
+        }
+
+        section#Trending .Main-Trending-Cont .Trending-Cont:hover{
+            border: 10px groove var(--color2);
+            transform: translateY(-20px)
+        }
+
+        section#Trending .Main-Trending-Cont .Trending-Cont img {
+            width: 200px;
+            height: 250px;
+        }
+
+        section#Trending .Main-Trending-Cont .Trending-Cont h1{
+            font-size: 20px;
+        }
+
+        section#Trending  .Button-Cont2  {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width:100%;
+            /* border: 2px solid red; */
+        }
+
+        section#Trending .Main-Trending-Cont .Button-Cont2 a{
+            background-color: var(--color2);
+            position: relative;
+            display: inline-flex;
+            /* border:3px solid var(--color3); */
+            border-radius: 5px;
+            padding: 10px;
+            /* width:170px; */
+            text-align: center;
+            margin: 10px 0px;
+            color:var(--color);
+            font-weight: bold;
+            font-size: 20px;
+            z-index: 1;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        section#Trending .Main-Trending-Cont .Button-Cont2 a:after{
+            content: "";
+            position:absolute;
+            left:0;
+            top:0;
+            width:0%;
+            height: 100%;
+            background-color: var(--color);
+            z-index: -1;
+            transition: .5s ease-in-out;
+        }
+
+        section#Trending .Main-Trending-Cont .Button-Cont2 a:hover{
+            color:var(--color2);
+            z-index: 1;
+        }
+
+        section#Trending .Main-Trending-Cont .Button-Cont2 a:hover::after{
+            width:100%;
+            color:var(--color2);
+        }
+
+        @media screen and (max-width:1130px) {
+            section#Trending .Main-Trending-Cont{
+                grid-template-columns: auto auto auto auto;
+            }
+        }
+
+        @media screen and (max-width:1000px) {
+            section#Trending .Main-Trending-Cont{
+                grid-template-columns: auto auto auto;
+                column-gap: 50px;
+            }
+        }
+
+        @media screen and (max-width:830px) {
+            section#Trending .Main-Trending-Cont{
+                /* grid-template-columns: auto auto auto; */
+                column-gap: 20px;
+            }
+        }
+
+        @media screen and (max-width:650px) {
+            section#Trending .Main-Trending-Cont{
+                /* grid-template-columns: auto auto auto; */
+                column-gap: 10px;
+            }
+        }
+
+        @media screen and (max-width:640px) {
+            section#Trending .Main-Trending-Cont{
+                grid-template-columns: auto auto;
+                column-gap: 50px;
+            }
+        }
+
+        @media screen and (max-width:500px) {
+            section#Trending .Main-Trending-Cont{
+                /* grid-template-columns: auto auto; */
+                column-gap: 20px;
+            }
+
+            section#Trending .Main-Trending-Cont .Trending-Cont{
+                width:150px
+            }
+
+            section#Trending .Main-Trending-Cont .Trending-Cont img {
+                width:150px;
+                height: 220px;
+            }
+            
+            section#Trending .Main-Trending-Cont .Trending-Cont h1 {
+                font-size: 15px;
+            }
+        }
+
+        section#Coming-soon{
+            padding: 50px 50px;
+        }
+
+        section#Coming-soon .h1-Cont2{
+            border-bottom: 5px solid var(--color2);
+            padding: 0px 0px 20px;
+            font-size: 30px;
+            font-family: sub-main;
+            font-weight: 100;
+            text-align: center;
+        }
+
+        section#Coming-soon .Main-Coming-soon-Cont{
+            display: flex;
+            gap: 20px;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            margin: 50px 0px;
+            /* align-items: center; */
+            /* justify-content: center; */
+            /* border: 2px solid darkblue; */
+        }
+        
+        section#Coming-soon .Main-Coming-soon-Cont .Coming-soon-Cont{
+            /* overflow: hidden; */
+            border: 10px groove transparent;
+            border-radius: 10px;
+            width:100%;
+            /* width:200px; */
+            margin: 0px 0px 50px;
+            cursor: pointer;
+            transition: .5s;
+        }
+        
+        section#Coming-soon .Main-Coming-soon-Cont .Coming-soon-Cont:hover{
+            border: 10px groove var(--color2);
+        }
+
+        section#Coming-soon .Main-Coming-soon-Cont .Coming-soon-Cont h1{
+            font-size: 17px;
+        }
+        
+        section#Coming-soon .Main-Coming-soon-Cont .Coming-soon-Cont img {
+            /* border-radius: 20px; */
+            width:200px;
+            height: 250px;
+        }
+
+        footer#Newsletter{
+            padding: 50px 100px;
+            display: flex;
+            justify-content: space-between;
+            /* align-items: center; */
+            border-top: 5px groove var(--color2);
+        }
+
+        footer#Newsletter .Newsletter-Cont{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        footer#Newsletter .Newsletter-Cont .h1-Cont3{
+            font-size: 30px;
+            font-family: sub-main;
+            text-align: center;
+        }
+
+        footer#Newsletter .Newsletter-Cont form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        footer#Newsletter .Newsletter-Cont form input[type=text] {
+            width:300px;
+            padding: 10px;
+            border-radius: 15px;
+        }
+
+        footer#Newsletter .Newsletter-Cont form input[type=submit] {
+            width:150px;
+            /* height: 30px; */
+            padding: 10px;
+            cursor: pointer;
+            background-color: var(--color2);
+            border: none;
+            color:white;
+            font-size: 20px;
+            border-radius: 50px;
+            transition: .5s;
+            /* padding: 5px; */
+        }
+
+        footer#Newsletter .Newsletter-Cont form input[type=submit]:hover{
+            /* content: ' ';
+            position: absolute;
+            left:0;
+            top:0;
+            background-color: var(--color);
+            width:100%;
+            height: auto; */
+            transform: scale(1.2);
+        }
+
+        footer#Newsletter .Follow-Cont{
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
+            gap: 20px;
+        }
+
+        footer#Newsletter .Follow-Cont .h1-Cont4{
+            font-size: 30px;
+            font-family: sub-main;
+        }
+
+        footer#Newsletter .Follow-Cont .Icon-Cont{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width:100%;
+            gap:30px
+        }
+
+        footer#Newsletter .Follow-Cont .Icon-Cont .S-Icon{
+            width:50px;
+            height: 50px;
+            /* fill:var(--color2);
+            stroke-width: 10px;
+            stroke: var(--color); */
+        }
+
+        footer#Newsletter .Follow-Cont .Icon-Cont .S-Icon #facebook{
+            fill:var(--color);
+            stroke-width: 20px;
+            stroke: var(--color2);
+            animation: facebook 3s ease infinite;
+            stroke-dasharray: 2680;
+            stroke-dashoffset: 0;
+            transition: .5s;
+        }
+
+        /* footer#Newsletter .Follow-Cont .Icon-Cont .S-Icon #facebook:hover{
+            transform: translateY(-50px);
+        } */
+
+        @keyframes facebook {
+            25%{
+                stroke-dashoffset: 2680;
+            }
+            50%{
+                stroke-dashoffset: 5360;
+            }
+            75%{
+                fill:transparent;
+                stroke-dashoffset: 8040;
+            }
+            100%{
+                stroke-dashoffset: 2680;
+            }
+        }
+        .Mode-Cont{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap:20px;
+            justify-content: center;
+        }
+
+        .h1-Cont5{
+            font-family: sub-main;
+            font-size: 30px;
+        }
+
+         label{
+            position: relative;            
+            /* width: */
+            display: flex;
+            justify-content: space-between;
+            /* place-items: center; */
+            /* border: 2px solid transparent; */
+            width:70px;
+            background-color: var(--color);
+            border-radius: 50px;
+            height: 30px;
+            padding: 5px;
+        }
+
+        .input{
+            display: none;
+        }
+
+        .input:checked + label{
+            background-color: var(--color3);
+        }
+
+        .input:checked + label .ball{
+            transform: translateX(39px);
+            background-color: var(--color);
+        }
+
+         .ball{
+            cursor: pointer;
+            position: absolute;
+            width:22px;
+            height: 22px;
+            background-color: var(--color3);
+            border-radius: 50%;
+            transition: .5s;
+        }
+
+        @media screen and (max-width:1100px) {
+            footer#Newsletter{
+                flex-flow: column;
+                gap: 70px;
+            }
+
+            footer#Newsletter .Follow-Cont .Icon-Cont{
+                /* gap:10px; */
+                justify-content: space-evenly;
+            }
+        }
+
+        @media screen and (max-width:650px){
+            footer#Newsletter .Newsletter-Cont .h1-Cont3{
+                font-size: 23px;
+            }
+
+            /* footer#Newsletter .Newsletter-Cont .h1-Cont3{
+                font-size: 23px;
+            } */
+            footer#Newsletter .Follow-Cont .h1-Cont4{
+                font-size: 23px;
+            }
+
+            .h1-Cont5{
+                font-size: 23px;
+            }
+        }
+
+        @media screen and (max-width:530px){
+            footer#Newsletter .Newsletter-Cont form input[type=text]{
+                width:250px
+            }
+        }
+
+        @media screen and (max-width:370px) {
+            footer#Newsletter .Follow-Cont .Icon-Cont .S-Icon{
+                width:20px;
+                height:20px;
+                /* border: 2px solid blue; */
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="Main-Cont">
+        <header>
+            <div class="logo">Collins</div>
+            <div class="bars">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <nav class="Nav-Bar">
+                <ul>
+                    <li><a href="#Home">Home</a></li>
+                    <li><a href="#Trending">Trending</a></li>
+                    <li><a href="#Coming-soon">Coming soon</a></li>
+                    <li><a href="#Newsletter">Newsletter</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section id="Home">
+            <div class="Main-Slider-Cont">
+                <div class="Slider-Cont">
+                    <img src="IMAGES/img54.jpg" alt="Slider">
+                    <div class="Slider-Content">
+                        <h1>Glorious Carnage</h1>
+                        <div class="Button-Cont">
+                            <a href="#">Book Now</a>
+                        </div>
+                        <!-- <button>Book Nowc</button> -->
+                    </div>
+                </div>
+                <div class="Slider-Cont">
+                    <img src="IMAGES/img4.jpg" alt="Slider">
+                    <div class="Slider-Content">
+                        <h1>Hanhso</h1>
+                        <div class="Button-Cont">
+                            <a href="#">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="Slider-Cont">
+                    <img src="IMAGES/img7.jpg" alt="Slider">
+                    <div class="Slider-Content">
+                        <h1>Do Your Worst</h1>
+                        <div class="Button-Cont">
+                            <a href="#">Book Now</a>
+                        </div>
+                        <!-- <a href="#">Book Now</a> -->
+                    </div>
+                </div>
+                <div class="Slider-Cont">
+                    <img src="IMAGES/img19.jpg" alt="Slider">
+                    <div class="Slider-Content">
+                        <h1>Pathaan</h1>
+                        <div class="Button-Cont">
+                            <a href="#">Book Now</a>
+                        </div>
+                        <!-- <a href="#">Book Now</a> -->
+                    </div>
+                </div>
+                <div class="Slider-Cont">
+                    <img src="IMAGES/img34.jpg" alt="Slider">
+                    <div class="Slider-Content">
+                        <h1>Kabzaa</h1>
+                        <div class="Button-Cont">
+                            <a href="#">Book Now</a>
+                        </div>
+                        <!-- <a href="#">Book Now</a> -->
+                    </div>
+                </div>
+                <button class="Next">&rArr;</button>
+            </div>
+        </section>
+
+        <section id="Trending">
+            <div class="h1-Cont">Trending</div>
+            <div class="Main-Trending-Cont">
+                <div class="Trending-Cont">
+                    <img src="IMAGES/img1.jpg" alt="Trend">
+                    <h1>Extration 2</h1>
+                    <p>120 mins | Action</p>
+                </div>
+
+                <div class="Trending-Cont">
+                    <img src="IMAGES/img2.jpg" alt="Trend">
+                    <h1>Swarm</h1>
+                    <p>120 mins | Action</p>
+                </div>
+
+                <div class="Trending-Cont">
+                    <img src="IMAGES/img3.jpg" alt="Trend">
+                    <h1>Prom Pact</h1>
+                    <p>120 mins | Action</p>
+                </div>
+
+                <div class="Trending-Cont">
+                    <img src="IMAGES/img5.jpg" alt="Trend">
+                    <h1>Kuttey</h1>
+                    <p>120 mins | Action</p>
+                </div>
+
+                <div class="Trending-Cont">
+                    <img src="IMAGES/img6.jpg" alt="Trend">
+                    <h1>Children of the corn</h1>
+                    <p>120 mins | Action</p>
+                </div>
+
+                <div class="Trending-Cont">
+                    <img src="IMAGES/img8.jpg" alt="Trend">
+                    <h1>80 for Brandy</h1>
+                    <p>120 mins | Adventure</p>
+                </div>
+
+                <div class="Trending-Cont">
+                    <img src="IMAGES/img9.jpg" alt="Trend">
+                    <h1>Chevalier</h1>
+                    <p>120 mins | Action</p>
+                </div>
+
+                <div class="Trending-Cont">
+                    <img src="IMAGES/img10.jpg" alt="Trend">
+                    <h1>Beautiful Disaster</h1>
+                    <p>120 mins | Action</p>
+                </div>
+
+                <div class="Trending-Cont">
+                    <img src="IMAGES/img11.jpg" alt="Trend">
+                    <h1>Dungeons & Dragons</h1>
+                    <p>120 mins | Action</p>
+                </div>
+
+                <div class="Trending-Cont">
+                    <img src="IMAGES/img12.jpg" alt="Trend">
+                    <h1>The wrath of Becky</h1>
+                    <p>120 mins | Action</p>
+                </div>
+
+                <div class="Trending-Cont">
+                    <img src="IMAGES/img13.jpg" alt="Trend">
+                    <h1>Assassin Club</h1>
+                    <p>120 mins | Action</p>
+                </div>
+
+                <div class="Trending-Cont">
+                    <img src="IMAGES/img14.jpg" alt="Trend">
+                    <h1>The Tutor</h1>
+                    <p>120 mins | Action</p>
+                </div>
+
+                <div class="Trending-Cont">
+                    <img src="IMAGES/img15.jpg" alt="Trend">
+                    <h1>Last Kingdom</h1>
+                    <p>120 mins | Action</p>
+                </div>
+
+                <div class="Trending-Cont">
+                    <img src="IMAGES/img16.jpg" alt="Trend">
+                    <h1>Oh Belinda</h1>
+                    <p>120 mins | Action</p>
+                </div>
+
+                <div class="Trending-Cont">
+                    <img src="IMAGES/img17.jpg" alt="Trend">
+                    <h1>Jesus Revolution</h1>
+                    <p>120 mins | Action</p>
+                </div>
+                <div class="Button-Cont2">
+                    <a href="#">More &DoubleLongRightArrow;</a>
+                </div>
+            </div>
+        </section>
+        <section id="Coming-soon">
+            <div class="h1-Cont2">Coming soon</div>
+            <div class="Main-Coming-soon-Cont">
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img18.jpg" alt="Coming-soon">
+                    <h1>Shazam 2</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img20.jpg" alt="Coming-soon">
+                    <h1>The ritual killer</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img21.jpg" alt="Coming-soon">
+                    <h1>Unexpected Grace</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img22.jpg" alt="Coming-soon">
+                    <h1>Part III</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img23.jpg" alt="Coming-soon">
+                    <h1>You're killing me</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img24.jpg" alt="Coming-soon">
+                    <h1>The hangover partII</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img25.jpg" alt="Coming-soon">
+                    <h1>The Covenant</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img26.jpg" alt="Coming-soon">
+                    <h1>Breakout</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img27.jpg" alt="Coming-soon">
+                    <h1>Falling for a killer</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img28.jpg" alt="Coming-soon">
+                    <h1>Evil dead rise</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img29.jpg" alt="Coming-soon">
+                    <h1>Queen Charlotte</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img30.jpg" alt="Coming-soon">
+                    <h1>Equailzer2</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img31.jpg" alt="Coming-soon">
+                    <!-- <h1>You're killing me</h1> -->
+                    <h1>Equailzer</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img32.jpg" alt="Coming-soon">
+                    <h1>Sweet Water</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img33.jpg" alt="Coming-soon">
+                    <h1>The magic flute</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img35.jpg" alt="Coming-soon">
+                    <h1>Scream</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img36.jpg" alt="Coming-soon">
+                    <h1>Kandahar</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img37.jpg" alt="Coming-soon">
+                    <h1>The originals</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img38.jpg" alt="Coming-soon">
+                    <h1>The secret Kingdom</h1>
+                </div>
+                <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img40.jpg" alt="Coming-soon">
+                    <h1>One day as a lion</h1>
+                </div>
+                <!-- <div class="Coming-soon-Cont">
+                    <img src="IMAGES/img41.jpg" alt="Coming-soon">
+                    <h1>You're killing me</h1>
+                </div> -->
+            </div>
+        </section>
+        <footer id="Newsletter">
+            <div class="Newsletter-Cont">
+                <div class="h1-Cont3">Subcribe to Newsletter</div>
+                <form>
+                    <input type="text" placeholder="Enter email" required >
+                    <input type="submit" value="Subcribe">
+                </form>
+            </div>
+
+            <div class="Follow-Cont">
+                <div class="h1-Cont4">Follow us</div>
+                <div class="Icon-Cont">
+                    <div class="S-Icon">
+                        <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z" id="facebook"/></svg>
+                        </a>
+                    </div>
+                    <div class="S-Icon">
+                        <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" id="facebook"/></svg>
+                        </a>
+                    </div>
+                    <div class="S-Icon">
+                        <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z" id="facebook"/></svg>
+                        </a>
+                    </div>
+                    <div class="S-Icon">
+                        <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z" id="facebook"/></svg>
+                        </a>
+                    </div>
+                    <div class="S-Icon">
+                        <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!-- Font Awesome Free 5.15.3 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) --><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-48.9 158.8c.2 2.8.2 5.7.2 8.5 0 86.7-66 186.6-186.6 186.6-37.2 0-71.7-10.8-100.7-29.4 5.3.6 10.4.8 15.8.8 30.7 0 58.9-10.4 81.4-28-28.8-.6-53-19.5-61.3-45.5 10.1 1.5 19.2 1.5 29.6-1.2-30-6.1-52.5-32.5-52.5-64.4v-.8c8.7 4.9 18.9 7.9 29.6 8.3a65.447 65.447 0 0 1-29.2-54.6c0-12.2 3.2-23.4 8.9-33.1 32.3 39.8 80.8 65.8 135.2 68.6-9.3-44.5 24-80.6 64-80.6 18.9 0 35.9 7.9 47.9 20.7 14.8-2.8 29-8.3 41.6-15.8-4.9 15.2-15.2 28-28.8 36.1 13.2-1.4 26-5.1 37.8-10.2-8.9 13.1-20.1 24.7-32.9 34z" id="facebook"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="Mode-Cont">
+        <div class="h1-Cont5">Theme</div>
+        <input type="checkbox" id="toggle" class="input">
+            <label for="toggle">
+                <img src="ICONS/moon.svg" alt="Dark">
+                <img src="ICONS/sun.svg" alt="Light">
+                <div class="ball"></div>
+            </label>
+        </div>
+    </main>
+    <script>
+        const Nav = document.querySelector('.Nav-Bar')
+        const Bars = document.querySelector('.bars')
+        Bars.onclick=function(){
+            Nav.classList.toggle('active')
+        }
+
+
+
+        //Slider
+        let Slider = document.querySelectorAll('.Slider-Cont')
+        let Next = document.querySelector('.Next')
+        console.log(Slider);
+        for (let index = 0; index < Slider.length; index++) {
+            // const element = array[index];
+            Slider[index].style.transform=`translateX(${100*index}%)`
+        }
+
+        let currentIndex=0
+        let maximumSlide= Slider.length-1
+        function Slide() {
+            if (currentIndex === maximumSlide) {
+                currentIndex=0
+            } else {
+                currentIndex++
+            }
+            for (let index = 0; index < Slider.length; index++) {
+                // const element = array[index];
+                Slider[index].style.transform=`translateX(${100*(index-currentIndex)}%)`
+            }
+        }
+        Next.addEventListener("click",Slide)
+
+
+        const Header = document.querySelector('header')
+        window.onscroll=function(){
+            if (window.pageYOffset > 0) {
+                Header.classList.add('scrolled')
+            } else {
+                Header.classList.remove('scrolled')
+            }
+        }
+
+
+        let checkbox = document.getElementById('toggle')
+        let Main = document.querySelector('.Main-Cont')
+        checkbox.onclick = function () {
+            Main.classList.toggle('light')
+        }
+        console.log(Main);
+    </script>
+</body>
+</html>

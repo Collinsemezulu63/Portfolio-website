@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count-down Timer</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: comic sans ms;
+            list-style: none;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: aquamarine;
+            gap: 50px;
+        }
+        
+        .cont {
+            display: flex;
+            background: aqua;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: inset 0px 0px 10px black;
+            gap: 50px;
+            width: auto;
+            height: auto;
+        }
+        
+        .cont .head1,
+        .head2,
+        .head3,
+        .head4{
+            text-align: center;
+        }
+        
+        li{
+            /* border: inset 2px solid black; */
+            border-radius: 5px;
+            box-shadow: inset 0px 0px 10px aqua;
+            background: rgb(23, 194, 194);
+            padding: 10px;
+        }
+
+        span{
+            /* border: 2px solid gray; */
+            display: flex;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .EXPIRED{
+            user-select: none;
+        }
+
+        h1{
+            background: linear-gradient(red,orangered,orange,yellow);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Count-down Timer</h1>
+    <ul class="cont">
+        <li><h1 class="head1"></h1><span>Days</span></li>
+        <li><h1 class="head2"></h1><span>Hours</span></li>
+        <li><h1 class="head3"></h1><span>Minutes</span></li>
+        <li><h1 class="head4"></h1><span>Seconds</span></li>
+    </ul>
+    <h1 class="EXPIRED"></h1>
+    <!-- <button class="but">Open Timer</button> -->
+    <script>
+        let Show = document.querySelector('.head1')
+        let Show2 = document.querySelector('.head2')
+        let Show3 = document.querySelector('.head3')
+        let Show4 = document.querySelector('.head4')
+        let EXPIRED = document.querySelector('.EXPIRED')
+        let Cont = document.querySelector('.cont')
+        let Button = document.querySelector('.but')
+        let countDownTime = new Date("July 5 2024 19:15:30").getTime()
+        let x = setInterval(function () {
+            let now = new Date().getTime()
+            let distance = countDownTime - now
+            let Days = Math.floor(distance / (1000 * 60 * 60 * 24))
+            let Hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+            let Minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+            let Seconds = Math.floor((distance % (1000 * 60)) / (1000))
+            Show.innerHTML = Days
+            Show2.innerHTML = Hours
+            Show3.innerHTML = Minutes
+            Show4.innerHTML = Seconds
+            if (distance < 0) {
+                clearInterval(x)
+                EXPIRED.innerHTML = "EXPIRED"
+                Show.innerHTML = "00"
+                Show2.innerHTML = "00"
+                Show3.innerHTML = "00"
+                Show4.innerHTML = "00"
+            }
+        })
+        // Button.onclick = function () {
+        //     // this.innerHTML.toggle('Close Timer')
+        //      Cont.classList.toggle('active')
+        //     // if ( Cont.classList.toggle('active')) {
+        //     //     Button.innerHTML='Close Timer'
+        //     // }
+        // }
+        // // open()
+        // // console.log(now);
+        // // Button.addEventListener("click",()=>{
+        // //     Cont.style.display='block'
+        // // })
+    </script>
+</body>
+
+</html>

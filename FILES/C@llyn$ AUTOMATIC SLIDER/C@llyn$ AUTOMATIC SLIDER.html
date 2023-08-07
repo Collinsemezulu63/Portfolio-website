@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic slider</title>
+    <style>
+        @font-face {
+            font-family: collins;
+            src: url(Font\ Pack/Ancillary-Bold.otf);
+        }
+        
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .mainCont{
+            width:100%;
+            height:100vh;
+            position: relative;
+        }
+    
+        .mainCont .image {
+            width:100%;
+            height: 100%;
+            position: absolute;
+        }
+    
+        .mainCont .image img {
+            width:100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .ul-cont {
+            width: 100%;
+            background-color:transparent;
+            backdrop-filter:blur(20px);
+            position: relative;
+        }
+
+        ul {
+            display: flex;
+            position: relative;
+            list-style: none;
+            justify-content: center;
+            background-color: transparent;
+        }
+
+       ul li{
+            padding: 25px;
+        }
+
+      ul li  a{
+            position: relative;
+            text-decoration: none;
+            font-family: collins;
+            font-size: 35px;
+            text-transform: uppercase;
+            color: transparent;
+            -webkit-text-stroke: 1px white;
+        }
+
+        ul li a::before {
+            content: attr(data);
+            position: absolute;
+            overflow: hidden;
+            width:0;
+            border-right: 7px solid var(--cir);
+            border-radius: 7px;
+            color:var(--cir);
+            -webkit-text-stroke: 1px var(--cir);
+            transition: .9s;
+        }
+
+        ul li a:hover::before {
+            width:100%;
+            filter: drop-shadow(0 0 15px var(--cir));
+        }
+    </style>
+</head>
+<body>
+    <div class="mainCont">
+                <div class="image">
+                    <img src="IMAGES/IMG (1).jpg" alt="html/css/js">
+                </div>
+                <div class="image">
+                    <img src="IMAGES/IMG (1).png" alt="html/css/js">
+                </div>
+                <div class="image">
+                    <img src="IMAGES/IMG (2).jpg" alt="html/css/js">
+                </div>
+        <div class="ul-cont">
+            <ul>
+                <li style="--cir:red"><a href="#" data="&nbsp;Home">&nbsp;Home&nbsp;</a></li>
+                <li style="--cir:orange"><a href="#" data="&nbsp;About">&nbsp;About&nbsp;</a></li>
+                <li style="--cir:yellow"><a href="#" data="&nbsp;Contact">&nbsp;Contact&nbsp;</a></li>
+                <li style="--cir:lawngreen"><a href="#" data="&nbsp;FAQ">&nbsp;FAQ&nbsp;</a></li>
+                <li style="--cir:blue"><a href="#" data="&nbsp;More">&nbsp;More&nbsp;</a></li>
+            </ul>
+        </div>
+        <script>
+            let Slid=document.querySelectorAll(".image")
+            let SliderPosition =0
+
+            function active() {
+                SliderPosition++
+                for (let index = 0; index < Slid.length; index++) {
+                    Slid[index].style.display='none'
+                }
+                
+                if (SliderPosition > Slid.length) {
+                    SliderPosition=1
+                }
+                
+                Slid[SliderPosition -1].style.display="block"
+                
+                setTimeout(() => {
+                    active()
+                }, 3000);
+            }
+            
+            active()
+        </script>
+    </div>
+</body>
+</html>

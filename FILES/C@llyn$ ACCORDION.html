@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accrodion</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: comic sans ms;
+        }
+
+        .mainCont{
+            display:flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            /* color: white; */
+            height: 100vh;
+            /* background-image: url(IMAGES2/atrium.jpg); */
+        }
+
+        button.accordion{
+            width:50%;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        button.accordion:nth-of-type(1){
+            background-color: red;
+            color: white;
+            font-weight: bold;
+            border: none;
+        }
+
+        button.accordion:nth-of-type(2){
+            background-color: orange;
+            color: white;
+            font-weight: bold;
+            border: none;
+        }
+
+        button.accordion:nth-of-type(3){
+            background-color: yellow;
+            color: white;
+            font-weight: bold;
+            border: none;
+        }
+
+        button.accordion:nth-of-type(4){
+            background-color: green;
+            color: white;
+            font-weight: bold;
+            border: none;
+        }
+
+        button.accordion:nth-of-type(5){
+            background-color: blue;
+            color: white;
+            font-weight: bold;
+            border: none;
+        }
+
+        button.accordion:nth-of-type(6){
+            background-color: indigo;
+            color: white;
+            font-weight: bold;
+            border: none;
+        }
+
+        button.accordion:nth-of-type(7){
+            background-color: violet;
+            color: white;
+            font-weight: bold;
+            border: none;
+        }
+
+        button.accordion::after{
+            content: "\2795";
+            /* font-weight: bold; */
+            /* color: white; */
+            /* font-size: ; */
+            float: right;
+        }
+
+        button.accordion.active::after{
+            content: '\2796';
+        }
+        
+        div.panel{
+            max-height: 0;
+            width:45%;
+            overflow: hidden;
+            opacity: 0;
+            transition: .5s ;
+            border: 2px solid #bbb;
+        }
+        
+        div.panel p{
+            padding: 10px;
+            
+            /* margin: 10px; */
+        }
+
+        div.panel.show{
+            max-height:500px ;
+            padding: 10px 0px 10px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="mainCont">
+        <button class="accordion">Red</button>
+        <div class="panel">
+            <span></span>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aliquid, incidunt dicta molestiae beatae deserunt excepturi animi nihil porro voluptatum nisi odit totam nam. Itaque exercitationem illum labore harum rerum.</p>
+        </div>
+        <button class="accordion">Orange</button>
+        <div class="panel">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aliquid, incidunt dicta molestiae beatae deserunt excepturi animi nihil porro voluptatum nisi odit totam nam. Itaque exercitationem illum labore harum rerum.</p>
+        </div>
+        <button class="accordion">Yellow</button>
+        <div class="panel">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aliquid, incidunt dicta molestiae beatae deserunt excepturi animi nihil porro voluptatum nisi odit totam nam. Itaque exercitationem illum labore harum rerum.</p>
+        </div>
+        <button class="accordion">Green</button>
+        <div class="panel">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aliquid, incidunt dicta molestiae beatae deserunt excepturi animi nihil porro voluptatum nisi odit totam nam. Itaque exercitationem illum labore harum rerum.</p>
+        </div>
+        <button class="accordion">Blue</button>
+        <div class="panel">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aliquid, incidunt dicta molestiae beatae deserunt excepturi animi nihil porro voluptatum nisi odit totam nam. Itaque exercitationem illum labore harum rerum.</p>
+        </div>
+        <button class="accordion">Indigo</button>
+        <div class="panel">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aliquid, incidunt dicta molestiae beatae deserunt excepturi animi nihil porro voluptatum nisi odit totam nam. Itaque exercitationem illum labore harum rerum.</p>
+        </div>
+        <button class="accordion">Violet</button>
+        <div class="panel">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde aliquid, incidunt dicta molestiae beatae deserunt excepturi animi nihil porro voluptatum nisi odit totam nam. Itaque exercitationem illum labore harum rerum.</p>
+        </div>
+    </div>
+    <script>
+        let acc = document.getElementsByClassName('accordion')
+        for (let index = 0; index < acc.length; index++) {
+            acc[index].onclick= function () {
+                this.classList.toggle('active')
+                this.nextElementSibling.classList.toggle('show')
+            }
+        }
+    </script>
+</body>
+</html>
